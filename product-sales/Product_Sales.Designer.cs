@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dgvTotal = new System.Windows.Forms.DataGridView();
             this.dgvSales = new System.Windows.Forms.DataGridView();
             this.SALEID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PRODUCTCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,14 +39,15 @@
             this.UNITPRICE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SALEDATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPrintReport = new System.Windows.Forms.Button();
             this.labelEndDate = new System.Windows.Forms.Label();
             this.labelStartDate = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.btnPrintReport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -63,14 +65,28 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel3.Controls.Add(this.dgvTotal);
             this.panel3.Controls.Add(this.dgvSales);
             this.panel3.Location = new System.Drawing.Point(0, 125);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1054, 589);
             this.panel3.TabIndex = 1;
             // 
+            // dgvTotal
+            // 
+            this.dgvTotal.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgvTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTotal.Location = new System.Drawing.Point(559, 466);
+            this.dgvTotal.Name = "dgvTotal";
+            this.dgvTotal.RowHeadersWidth = 51;
+            this.dgvTotal.RowTemplate.Height = 24;
+            this.dgvTotal.Size = new System.Drawing.Size(457, 98);
+            this.dgvTotal.TabIndex = 1;
+            this.dgvTotal.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTotal_CellContentClick);
+            // 
             // dgvSales
             // 
+            this.dgvSales.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dgvSales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SALEID,
@@ -83,7 +99,7 @@
             this.dgvSales.Name = "dgvSales";
             this.dgvSales.RowHeadersWidth = 51;
             this.dgvSales.RowTemplate.Height = 24;
-            this.dgvSales.Size = new System.Drawing.Size(1000, 551);
+            this.dgvSales.Size = new System.Drawing.Size(1000, 447);
             this.dgvSales.TabIndex = 0;
             this.dgvSales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSales_CellContentClick);
             this.dgvSales.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSales_CellContentDoubleClick);
@@ -145,6 +161,19 @@
             this.panel2.Size = new System.Drawing.Size(1054, 119);
             this.panel2.TabIndex = 0;
             // 
+            // btnPrintReport
+            // 
+            this.btnPrintReport.BackColor = System.Drawing.Color.Red;
+            this.btnPrintReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintReport.ForeColor = System.Drawing.Color.White;
+            this.btnPrintReport.Location = new System.Drawing.Point(915, 54);
+            this.btnPrintReport.Name = "btnPrintReport";
+            this.btnPrintReport.Size = new System.Drawing.Size(82, 44);
+            this.btnPrintReport.TabIndex = 5;
+            this.btnPrintReport.Text = "Print";
+            this.btnPrintReport.UseVisualStyleBackColor = false;
+            this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click);
+            // 
             // labelEndDate
             // 
             this.labelEndDate.AutoSize = true;
@@ -174,9 +203,9 @@
             this.btnLoad.ForeColor = System.Drawing.SystemColors.Menu;
             this.btnLoad.Location = new System.Drawing.Point(780, 54);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(128, 44);
+            this.btnLoad.Size = new System.Drawing.Size(114, 44);
             this.btnLoad.TabIndex = 2;
-            this.btnLoad.Text = "Report";
+            this.btnLoad.Text = "Filter";
             this.btnLoad.UseVisualStyleBackColor = false;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
@@ -195,20 +224,8 @@
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(345, 30);
             this.dtpStart.TabIndex = 0;
+            this.dtpStart.Value = new System.DateTime(2025, 6, 20, 0, 0, 0, 0);
             this.dtpStart.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
-            // 
-            // btnPrintReport
-            // 
-            this.btnPrintReport.BackColor = System.Drawing.Color.Red;
-            this.btnPrintReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintReport.ForeColor = System.Drawing.Color.White;
-            this.btnPrintReport.Location = new System.Drawing.Point(915, 54);
-            this.btnPrintReport.Name = "btnPrintReport";
-            this.btnPrintReport.Size = new System.Drawing.Size(82, 44);
-            this.btnPrintReport.TabIndex = 5;
-            this.btnPrintReport.Text = "Print";
-            this.btnPrintReport.UseVisualStyleBackColor = false;
-            this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click_1);
             // 
             // Product_Sales
             // 
@@ -221,6 +238,7 @@
             this.Load += new System.EventHandler(this.Product_Sales_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTotal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSales)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -246,6 +264,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn UNITPRICE;
         private System.Windows.Forms.DataGridViewTextBoxColumn SALEDATE;
         private System.Windows.Forms.Button btnPrintReport;
+        private System.Windows.Forms.DataGridView dgvTotal;
     }
 }
 
